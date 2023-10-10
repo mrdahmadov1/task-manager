@@ -8,9 +8,10 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MainLayoutComponent } from './main/main-layout/main-layout.component';
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent],
+  declarations: [AppComponent, NotFoundComponent, MainLayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

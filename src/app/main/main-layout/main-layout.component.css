@@ -1,0 +1,45 @@
+.main-layout {
+  color: #2d2d2d;
+  font-family: 'Poppins', sans-serif;
+}
+
+.header,
+.sidebar {
+  background: rgb(224, 224, 224);
+  border-radius: 12px;
+}
+
+.header {
+  margin-bottom: 24px;
+  padding: 24px 16px;
+}
+
+.sidebar {
+  width: 200px;
+  padding: 16px;
+  margin: 8px;
+}
+
+.sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+.sidebar ul li a {
+  display: block;
+  padding: 6px 12px;
+  color: #2d2d2d;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sidebar ul li a:hover {
+  background-color: #fff;
+}
+
+.content {
+  display: flex;
+}

@@ -39,7 +39,7 @@ export class SignUpComponent {
       this.authService
         .register(email, password)
         .then((userCredential) => {
-          this.router.navigate(['/users']);
+          this.router.navigate(['/profile']);
         })
         .catch((error) => {
           console.error('Registration Failed:', error);

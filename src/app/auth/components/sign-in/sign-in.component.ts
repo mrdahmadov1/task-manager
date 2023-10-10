@@ -35,7 +35,7 @@ export class SignInComponent {
       this.authService
         .login(email, password)
         .then((userCredential) => {
-          this.router.navigate(['/users']);
+          this.router.navigate(['/profile']);
         })
         .catch((error) => {
           console.error('Sign in Failed:', error);
