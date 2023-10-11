@@ -31,6 +31,7 @@ export class SignInComponent {
   onSubmit() {
     if (this.signinForm.valid) {
       const { email, password } = this.signinForm.value;
+      localStorage.setItem('userEmail', email);
 
       this.authService
         .login(email, password)
