@@ -5,6 +5,9 @@ import { TasksComponent } from './tasks/tasks.component';
 import { UsersComponent } from './users/users.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { StoreModule } from '@ngrx/store';
+import { profileReducer } from '../auth/store/user/profile.reducer';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const mainRoutes: Routes = [
   {
@@ -21,6 +24,11 @@ const mainRoutes: Routes = [
 
 @NgModule({
   declarations: [TasksComponent, UsersComponent, ProfileComponent],
-  imports: [CommonModule, RouterModule.forChild(mainRoutes)],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(mainRoutes),
+  ],
 })
 export class MainModule {}

@@ -1,13 +1,14 @@
 <div class="main-layout">
   <div class="header">
-    @username
+    <p>{{companyName}}</p>
+    <p>{{username}}</p>
   </div>
   <div class="content">
     <div class="sidebar">
       <ul>
-        <li><a routerLink="/profile">Profile</a></li>
-        <li><a routerLink="/tasks">Tasks</a></li>
-        <li><a routerLink="/users">Users</a></li>
+        <li><a routerLink="/profile" routerLinkActive="active-link">Profile</a></li>
+        <li><a routerLink="/tasks" routerLinkActive="active-link">Tasks</a></li>
+        <li><a routerLink="/users" routerLinkActive="active-link">Users</a></li>
       </ul>
     </div>
     <router-outlet></router-outlet>

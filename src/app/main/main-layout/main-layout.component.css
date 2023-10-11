@@ -1,23 +1,37 @@
 .main-layout {
-  color: #2d2d2d;
+  color: #fff;
   font-family: 'Poppins', sans-serif;
+
 }
 
 .header,
 .sidebar {
-  background: rgb(224, 224, 224);
+  background: rgb(131, 58, 180);
+  background: linear-gradient(135deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
   border-radius: 12px;
 }
 
 .header {
-  margin-bottom: 24px;
-  padding: 24px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: right;
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding: 24px 48px;
+}
+
+.header p {
+  margin: 0;
+  padding: 0
 }
 
 .sidebar {
+  font-size: 14px;
   width: 200px;
   padding: 16px;
   margin: 8px;
+  height: 150px;
 }
 
 .sidebar ul {
@@ -28,18 +42,26 @@
 
 
 .sidebar ul li a {
+  color: #fff;
   display: block;
+  font-weight: 500;
+  margin-bottom: 8px;
   padding: 6px 12px;
-  color: #2d2d2d;
   border-radius: 8px;
   text-decoration: none;
   cursor: pointer;
 }
 
-.sidebar ul li a:hover {
+.sidebar ul li a:hover,
+.sidebar ul li a.active-link {
+  color: #2d2d2d;
   background-color: #fff;
 }
 
 .content {
-  display: flex;
+  display: grid;
+  grid-template-columns: 250px 0 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 }

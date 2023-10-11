@@ -1,1 +1,22 @@
-<p>profile works!</p>
+<div class="container">
+  <h2 class="headline1">Edit Profile</h2>
+  <form class="form" [formGroup]="profileForm" (ngSubmit)="onSave()">
+    <div class="form-group">
+      <label for="companyName">Company Name</label>
+      <input type="text" id="companyName" formControlName="companyName" />
+    </div>
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number</label>
+      <input type="text" id="phoneNumber" formControlName="phoneNumber" />
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input type="text" id="address" formControlName="address" />
+    </div>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" formControlName="username" />
+    </div>
+    <button class="btnSave" type="submit">Save</button>
+  </form>
+</div>

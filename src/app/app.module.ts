@@ -7,15 +7,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { environment } from '../environments/environment';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MainLayoutComponent } from './main/main-layout/main-layout.component';
+import { StoreModule } from '@ngrx/store';
+import { profileReducer } from './auth/store/user/profile.reducer';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent, MainLayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
+    StoreModule.forRoot({ profile: profileReducer }),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,

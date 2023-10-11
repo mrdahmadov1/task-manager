@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SignupModel } from '../../models/sign-up.model';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,6 +17,7 @@ export class SignUpComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private db: AngularFireDatabase,
     private authService: AuthService
   ) {
     this.model = new SignupModel('', '', '', '', '', '');
@@ -36,10 +38,20 @@ export class SignUpComponent {
     if (this.signupForm.valid) {
       const { email, password } = this.signupForm.value;
 
+      localStorage.setItem('userEmail', email);
+
       this.authService
         .register(email, password)
-        .then((userCredential) => {
+        .then(({ user }) => {
+          this.db.object(`users/${user?.uid}`).set({
+            ...this.signupForm.value,
+            role: 'admin',
+          });
+
           this.router.navigate(['/profile']);
+        })
+        .catch((error) => {
+          console.error('Registration Failed:', error);
         })
         .catch((error) => {
           console.error('Registration Failed:', error);
