@@ -9,7 +9,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { environment } from '../environments/environment';
 import { MainLayoutComponent } from './main/main-layout/main-layout.component';
 import { StoreModule } from '@ngrx/store';
-import { profileReducer } from './auth/store/user/profile.reducer';
+import { profileReducer } from './store/user/profile.reducer';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent, MainLayoutComponent],
