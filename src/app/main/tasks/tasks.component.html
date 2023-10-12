@@ -1,1 +1,51 @@
-<p>tasks works!</p>
+<div class="container">
+  <div class="header">
+    <h2 class="headline1">All tasks</h2>
+    <button class="btnSave btnAdd" (click)="openAddTaskModal()">Add Task</button>
+  </div>
+
+  <div class="task-list">
+    <div class="task" *ngFor="let task of tasks">
+      <div class="header">
+        <h3>{{task.title}}</h3>
+        <div class="status">{{task.status}}</div>
+      </div>
+      <div class="content">
+        <p>{{task.description}}</p>
+        <span>{{task.deadline}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" [ngClass]="{'show': isAddTaskModalOpen}">
+    <div class="modal-content">
+      <form class="form" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+        <div class="header">
+          <h3>Add task</h3>
+          <button class="btnClose" (click)="closeAddTaskModal()">x</button>
+        </div>
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input type="text" id="title" formControlName="title">
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea type="text" id="description" formControlName="description"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="deadline">Deadline:</label>
+          <input type="text" id="deadline" formControlName="deadline">
+        </div>
+
+        <div class="form-group">
+          <label for="status">Status:</label>
+          <input type="status" id="status" formControlName="status">
+        </div>
+
+        <button class="btnSave btnAdd" type="submit" [disabled]="taskForm.invalid">Add</button>
+      </form>
+    </div>
+  </div>
+</div>

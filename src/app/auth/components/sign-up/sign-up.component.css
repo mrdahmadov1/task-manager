@@ -38,6 +38,17 @@
   outline: none;
 }
 
+.form p {
+  font-size: 12px;
+  margin: auto;
+}
+
+.form p a {
+  text-decoration: none;
+  color: #3B71FE;
+  font-weight: 500;
+}
+
 .btnSubmit {
   font-size: 14px;
   color: #fff;

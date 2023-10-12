@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
   userEmail: string;
   userData: any;
   profileForm: FormGroup;
+  role: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -21,10 +22,12 @@ export class ProfileComponent implements OnInit {
   ) {
     this.userEmail = localStorage.getItem('userEmail') || '';
     this.profileForm = this.fb.group({
-      companyName: '...',
-      phoneNumber: '...',
-      address: '...',
       username: '...',
+      companyName: '...',
+      firstName: '...',
+      lastName: '...',
+      address: '...',
+      phoneNumber: '...',
     });
   }
 
@@ -32,13 +35,21 @@ export class ProfileComponent implements OnInit {
     this.userDataService.getUserData(this.userEmail).subscribe((data) => {
       if (data && data.length > 0) {
         this.userData = data[0];
-        this.store.dispatch(SetUserData({ userData: this.userData }));
-        this.profileForm.patchValue({
-          companyName: this.userData.companyName,
-          phoneNumber: this.userData.phoneNumber,
-          address: this.userData.address,
-          username: this.userData.username,
-        });
+        this.role = this.userData.role; // Kullanıcının rolünü buradan alın
+        if (this.role === 'admin') {
+          this.profileForm.patchValue({
+            username: this.userData.username,
+            companyName: this.userData.companyName,
+            phoneNumber: this.userData.phoneNumber,
+            address: this.userData.address,
+          });
+        } else if (this.role === 'user') {
+          this.profileForm.patchValue({
+            username: this.userData.username,
+            firstName: this.userData.firstName,
+            lastName: this.userData.lastName,
+          });
+        }
       }
     });
   }

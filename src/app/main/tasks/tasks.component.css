@@ -1,0 +1,67 @@
+.modal textarea {
+  font-size: 12px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  color: #777E90;
+  border: 2px solid #E6E8EC;
+  outline: none;
+  resize: none;
+  height: 100px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+
+.modal textarea::-webkit-scrollbar {
+  width: 3px;
+}
+
+.modal textarea::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+  border-radius: 12px;
+}
+
+.modal textarea::-webkit-scrollbar-track {
+  background-color: transparent;
+  margin: 6px 0px;
+}
+
+.task {
+  padding: 16px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  background: rgba(252, 176, 69, 0.2);
+}
+
+.task .content {
+  margin-top: 12px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.task .header h3 {
+  margin: 0;
+}
+
+.task .header .status {
+  color: rgb(131, 58, 180);
+  background-color: #fff;
+  padding: 4px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.content p {
+  flex-basis: 75%;
+  color: #2d2d2d;
+  font-weight: 500;
+  margin: 0;
+}
+
+.content span {
+  flex-basis: 25%;
+  text-align: right;
+  color: rgb(253, 29, 29);
+  font-weight: 600;
+  font-size: 12px;
+}

@@ -10,6 +10,7 @@ export class MainLayoutComponent implements OnInit {
   userEmail: string;
   companyName: string;
   username: string;
+  role: string = '';
 
   constructor(private userDataService: UserDataService) {
     this.userEmail = localStorage.getItem('userEmail') || '';
@@ -21,6 +22,7 @@ export class MainLayoutComponent implements OnInit {
     this.userDataService.getUserData(this.userEmail).subscribe((userData) => {
       this.companyName = userData[0].companyName;
       this.username = userData[0].username;
+      this.role = userData[0].role;
     });
   }
 }

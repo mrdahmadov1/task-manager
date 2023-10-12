@@ -7,8 +7,9 @@
     <div class="sidebar">
       <ul>
         <li><a routerLink="/profile" routerLinkActive="active-link">Profile</a></li>
-        <li><a routerLink="/users" routerLinkActive="active-link">Users</a></li>
-        <li><a routerLink="/tasks" routerLinkActive="active-link">Tasks</a></li>
+        <li *ngIf="role === 'admin'"><a routerLink="/users" routerLinkActive="active-link">Users</a></li>
+        <li *ngIf="role == 'user'"><a routerLink="/my-tasks" routerLinkActive="active-link">My Tasks</a></li>
+        <li *ngIf="role == 'user'"><a routerLink="/tasks" routerLinkActive="active-link">Tasks</a></li>
         <li><a routerLink="/sign-in" routerLinkActive="active-link">Log out</a></li>
       </ul>
     </div>
