@@ -1,32 +1,64 @@
 <div class="container">
+  <div class="header">
+    <h2 class="headline1">Users</h2>
+    <button class="btnSave btnAdd" (click)="openAddUserModal()">Add User</button>
+  </div>
 
-  <h2 class="headline1">Users</h2>
-  <form [formGroup]=" userForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="firstName">First Name:</label>
-      <input type="text" id="firstName" formControlName="firstName">
+  <table class="userTable">
+    <thead class="tableHeader">
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Password</th>
+      </tr>
+    </thead>
+    <tbody class="tableBody">
+      <tr *ngFor="let user of users">
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.password }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="modal" [ngClass]="{'show': isAddUserModalOpen}">
+    <div class="modal-content">
+      <form class="form" [formGroup]=" userForm" (ngSubmit)="onSubmit()">
+        <div class="header">
+          <h3>Add user</h3>
+          <button class="btnClose" (click)="closeAddUserModal()">x</button>
+        </div>
+        <div class="form-group">
+          <label for="firstName">First Name:</label>
+          <input type="text" id="firstName" formControlName="firstName">
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name:</label>
+          <input type="text" id="lastName" formControlName="lastName">
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" formControlName="username">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" formControlName="email">
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" formControlName="password">
+        </div>
+
+        <button class="btnSave btnAdd" type="submit" [disabled]="userForm.invalid">Add</button>
+      </form>
     </div>
-
-    <div class="form-group">
-      <label for="lastName">Last Name:</label>
-      <input type="text" id="lastName" formControlName="lastName">
-    </div>
-
-    <div class="form-group">
-      <label for="username">Username:</label>
-      <input type="text" id="username" formControlName="username">
-    </div>
-
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" id="email" formControlName="email">
-    </div>
-
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input type="password" id="password" formControlName="password">
-    </div>
-
-    <button class="btnSave btnAdd" type="submit" [disabled]="userForm.invalid">Add</button>
-  </form>
+  </div>
 </div>

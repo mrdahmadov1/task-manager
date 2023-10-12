@@ -1,16 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['../profile/profile.component.css'],
+  styleUrls: ['../profile/profile.component.css', './users.component.css'],
 })
 export class UsersComponent implements OnInit {
   userForm: FormGroup;
+  isAddUserModalOpen: boolean = false;
+  users: any[] = [];
+  adminUserEmail: string;
 
-  constructor(private fb: FormBuilder, private db: AngularFireDatabase) {
+  constructor(
+    private fb: FormBuilder,
+    private db: AngularFireDatabase,
+    private authService: AuthService
+  ) {
+    this.adminUserEmail = localStorage.getItem('userEmail') || '';
     this.userForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -20,7 +29,24 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.db
+      .list('users', (ref) => ref.orderByChild('role').equalTo('user'))
+      .valueChanges()
+      .subscribe((users: any[]) => {
+        this.users = users.filter(
+          (user) => user.addedBy === this.adminUserEmail
+        );
+      });
+  }
+
+  openAddUserModal() {
+    this.isAddUserModalOpen = true;
+  }
+
+  closeAddUserModal() {
+    this.isAddUserModalOpen = false;
+  }
 
   onSubmit() {
     if (this.userForm.valid) {
@@ -33,13 +59,22 @@ export class UsersComponent implements OnInit {
         username,
         email,
         password,
-        // addedBy: adminUserId, // Eğer ekleyen admini belirlemek isterseniz, bu alanı kullanabilirsiniz.
+        role: 'user',
+        addedBy: this.adminUserEmail,
       };
 
-      // Kullanıcıyı Firebase veritabanına ekleyin
-      this.db.list('users').push(newUser);
+      this.authService
+        .register(email, password)
+        .then(({ user }) => {
+          this.db.object(`users/${user?.uid}`).set(newUser);
+        })
+        .catch((error) => {
+          console.error('Registration Failed:', error);
+        })
+        .catch((error) => {
+          console.error('Registration Failed:', error);
+        });
 
-      // Formu sıfırlayın veya gerekirse kullanıcıya başka bir işlem yapma seçeneği sunun
       this.userForm.reset();
     }
   }
