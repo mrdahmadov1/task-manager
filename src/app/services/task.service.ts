@@ -22,10 +22,8 @@ export class TaskService {
         .subscribe((action) => {
           const itemToUpdate = action[0].payload.key;
           if (itemToUpdate) {
-            const updateData = { assignedTo: assignedTo };
-
             taskRef
-              .update(itemToUpdate, updateData)
+              .update(itemToUpdate, { assignedTo: [...assignedTo] })
               .then(() => {
                 resolve();
               })

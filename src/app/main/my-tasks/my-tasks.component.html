@@ -1,0 +1,28 @@
+<div class="container">
+  <h2 class="headline1">My Tasks</h2>
+
+  <div class="task-list">
+    <div class="task" *ngFor="let task of tasks">
+      <div class="header">
+        <h3>{{task.title}}</h3>
+        <div class="header-right">
+          <mat-select class="dropdown" placeholder="Colleagues" [(ngModel)]="task.assignedTo" multiple>
+            <mat-option *ngFor="let colleague of colleagues" [value]="colleague">
+              {{colleague.email}}</mat-option>
+          </mat-select>
+          <div class="status">
+            <mat-select placeholder="Status" [value]="task.status">
+              <mat-option value="Pending">Pending</mat-option>
+              <mat-option value="In Progress">In Progress</mat-option>
+              <mat-option value="Done">Done</mat-option>
+            </mat-select>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <p>{{task.description}}</p>
+        <span>{{task.deadline}}</span>
+      </div>
+    </div>
+  </div>
+</div>

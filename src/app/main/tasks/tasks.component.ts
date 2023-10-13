@@ -41,21 +41,18 @@ export class TasksComponent implements OnInit {
     this.getColleagues();
   }
 
-  onAssignedToChange(task: any): void {
-    this.taskService
-      .updateAssignedTo(task.id, task.assignedTo)
-      .then(() => {
-        console.log(task.assignedTo);
-      })
-      .catch((error) => {});
-  }
+  // onAssignedToChange(event: any): void {
+  //   this.taskService
+  //     .updateAssignedTo('87c80ce9-a10b-44d9-a79d-5cc9bde8aaf4', event.value)
+  //     .then(() => {});
+  // }
 
   getAllTasks() {
     this.db
       .list('tasks')
       .valueChanges()
       .subscribe((tasks: any[]) => {
-        this.tasks = tasks;
+        this.tasks = tasks.reverse();
       });
   }
 

@@ -65,6 +65,17 @@
   font-weight: 600;
 }
 
+.task .header .header-right .status mat-select {
+  color: rgb(131, 58, 180);
+  width: 150px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.task .header .header-right .status {
+  padding: 2px 16px;
+}
+
 .task .header .header-right .dropdown {
   padding: 2px 16px;
   background: #fff;
@@ -72,12 +83,9 @@
   margin-left: auto;
 }
 
-.task .header .header-right .dropdown {
-  color: rgb(131, 58, 180);
-}
-
 
 .content p {
+  white-space: pre;
   flex-basis: 75%;
   color: #2d2d2d;
   font-weight: 500;
