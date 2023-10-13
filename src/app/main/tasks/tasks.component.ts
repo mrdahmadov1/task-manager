@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { UserDataService } from 'src/app/services/user.service';
+import { v4 as uuidv4 } from 'uuid';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-tasks',
@@ -15,9 +18,15 @@ export class TasksComponent implements OnInit {
   taskForm: FormGroup;
   isAddTaskModalOpen: boolean = false;
   tasks: any[] = [];
+  colleagues: any[] = [];
   userEmail: string;
 
-  constructor(private fb: FormBuilder, private db: AngularFireDatabase) {
+  constructor(
+    private fb: FormBuilder,
+    private db: AngularFireDatabase,
+    private userDataService: UserDataService,
+    private taskService: TaskService
+  ) {
     this.userEmail = localStorage.getItem('userEmail') || '';
     this.taskForm = this.fb.group({
       title: ['', Validators.required],
@@ -28,12 +37,39 @@ export class TasksComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getAllTasks();
+    this.getColleagues();
+  }
+
+  onAssignedToChange(task: any): void {
+    this.taskService
+      .updateAssignedTo(task.id, task.assignedTo)
+      .then(() => {
+        console.log(task.assignedTo);
+      })
+      .catch((error) => {});
+  }
+
+  getAllTasks() {
     this.db
       .list('tasks')
       .valueChanges()
       .subscribe((tasks: any[]) => {
         this.tasks = tasks;
       });
+  }
+
+  getColleagues() {
+    this.userDataService.getUserData(this.userEmail).subscribe((data) => {
+      this.db
+        .list('users', (ref) =>
+          ref.orderByChild('addedBy').equalTo(data[0].addedBy)
+        )
+        .valueChanges()
+        .subscribe((colleagues: any[]) => {
+          this.colleagues = colleagues;
+        });
+    });
   }
 
   openAddTaskModal() {
@@ -49,6 +85,7 @@ export class TasksComponent implements OnInit {
       const { title, description, deadline, status } = this.taskForm.value;
 
       const newTask = {
+        id: uuidv4(),
         title,
         description,
         deadline,
@@ -56,7 +93,6 @@ export class TasksComponent implements OnInit {
       };
 
       this.db.list('tasks').push(newTask);
-
       this.taskForm.reset();
     }
   }

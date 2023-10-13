@@ -8,11 +8,19 @@
     <div class="task" *ngFor="let task of tasks">
       <div class="header">
         <h3>{{task.title}}</h3>
-        <div class="status">{{task.status}}</div>
+        <div class="header-right">
+          <mat-select class="dropdown" placeholder="Colleagues" [(ngModel)]="task.assignedTo" multiple>
+            <mat-option *ngFor="let colleague of colleagues" [value]="colleague"
+              (onSelectionChange)="onAssignedToChange(task)">
+              {{colleague.email}}</mat-option>
+          </mat-select>
+          <div class="status">{{task.status}}</div>
+        </div>
       </div>
       <div class="content">
         <p>{{task.description}}</p>
         <span>{{task.deadline}}</span>
+
       </div>
     </div>
   </div>

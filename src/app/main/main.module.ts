@@ -5,9 +5,8 @@ import { TasksComponent } from './tasks/tasks.component';
 import { UsersComponent } from './users/users.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
-import { StoreModule } from '@ngrx/store';
-import { profileReducer } from '../store/user/profile.reducer';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 
 const mainRoutes: Routes = [
   {
@@ -28,6 +27,7 @@ const mainRoutes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSelectModule,
     RouterModule.forChild(mainRoutes),
   ],
 })

@@ -32,17 +32,31 @@
   background: rgba(252, 176, 69, 0.2);
 }
 
+.task .header {
+  justify-content: start;
+}
+
 .task .content {
   margin-top: 12px;
   display: flex;
   align-items: flex-end;
 }
 
-.task .header h3 {
-  margin: 0;
+.task .header .header-right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-grow: 1;
 }
 
-.task .header .status {
+.task .header h3 {
+  margin: 0;
+  width: fit-content;
+}
+
+.task .header .header-right .dropdown,
+.task .header .header-right .status {
   color: rgb(131, 58, 180);
   background-color: #fff;
   padding: 4px 16px;
@@ -50,6 +64,18 @@
   font-size: 14px;
   font-weight: 600;
 }
+
+.task .header .header-right .dropdown {
+  padding: 2px 16px;
+  background: #fff;
+  width: 300px;
+  margin-left: auto;
+}
+
+.task .header .header-right .dropdown {
+  color: rgb(131, 58, 180);
+}
+
 
 .content p {
   flex-basis: 75%;

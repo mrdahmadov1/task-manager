@@ -10,11 +10,13 @@ import { environment } from '../environments/environment';
 import { MainLayoutComponent } from './main/main-layout/main-layout.component';
 import { StoreModule } from '@ngrx/store';
 import { profileReducer } from './store/user/profile.reducer';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent, MainLayoutComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     StoreModule.forRoot({ profile: profileReducer }),
     AngularFireModule.initializeApp(environment.firebaseConfig),
