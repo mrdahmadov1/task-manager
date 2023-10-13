@@ -5,3 +5,5 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Development server and Database - Firebase 
 
 ## Running unit tests - Coming soon
+
+![Sign-in]('src/assets/images/sign-in.png')
