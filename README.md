@@ -13,4 +13,4 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ![Users](src/assets/images/users.png)
 ![User Profile](src/assets/images/user-profile.png)
 ![Add Task](src/assets/images/add-task.png)
-![All Tasks](src/assets/images/add-tasks.png)
+![All Tasks](src/assets/images/all-tasks.png)
