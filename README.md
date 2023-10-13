@@ -6,4 +6,4 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Running unit tests - Coming soon
 
-![Sign-in]('src/assets/images/sign-in.png')
+![Sign-in](src/assets/images/sign-in.png)
